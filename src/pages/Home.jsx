@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../components/layout/Layout';
 import Button from '../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { Users, ArrowRight, Zap, Target, Shield, Globe, Rocket, Cpu, BarChart3, MessageSquare, TrendingUp, Code2 } from 'lucide-react';
 import { cn } from '../utils/cn';
 
