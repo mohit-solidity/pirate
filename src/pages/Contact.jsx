@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Layout from '../components/layout/Layout';
 import Button from '../components/ui/Button';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Download, Send, Globe, ShieldCheck } from 'lucide-react';
+import { Github, Linkedin, Twitter, Download, Send, ShieldCheck } from 'lucide-react';
 import { cn } from '../utils/cn';
 
 const Contact = () => {

@@ -9,17 +9,18 @@ const Button = ({
     ...props
 }) => {
     const variants = {
-        primary: 'bg-cyan-500 text-black hover:bg-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.5)]',
-        secondary: 'bg-transparent border border-white/20 text-white hover:bg-white/5',
-        outline: 'bg-transparent border border-cyan-500/50 text-cyan-400 hover:bg-cyan-400/10'
+        primary: 'bg-[var(--color-primary)] text-black hover:brightness-110 shadow-[0_0_20px_var(--color-primary-soft)]',
+        secondary: 'bg-transparent border border-[var(--glass-border)] text-[var(--color-text-main)] hover:bg-[var(--glass-bg)] backdrop-blur-[var(--glass-blur)]',
+        outline: 'bg-transparent border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary-soft)]',
+        ghost: 'bg-transparent text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] hover:bg-[var(--glass-bg)]'
     };
 
     return (
         <motion.button
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             className={cn(
-                'px-6 py-2.5 rounded-full font-medium transition-all duration-300 flex items-center justify-center gap-2',
+                'px-[var(--space-md)] py-[var(--space-xs)] rounded-[var(--space-sm)] font-bold uppercase tracking-widest text-[var(--fs-xs)] transition-all duration-300 flex items-center justify-center gap-[var(--space-xs)] cursor-pointer',
                 variants[variant],
                 className
             )}

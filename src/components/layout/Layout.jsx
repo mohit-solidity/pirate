@@ -30,22 +30,18 @@ const Layout = ({ children }) => {
     }, [mouseX, mouseY]);
 
     return (
-        <div className="min-h-screen bg-black text-white relative selection:bg-cyan-500/30 selection:text-white overflow-x-hidden no-scrollbar">
-            {/* 1. Base Layer: Deep Black Background */}
-            <div className="fixed inset-0 bg-[#050505] -z-30" />
+        <div className="min-h-screen selection:bg-[var(--color-primary-soft)] selection:text-[var(--color-primary)]">
+            {/* Structural Layers */}
+            <div className="fixed inset-0 bg-[var(--color-bg-deep)] -z-40" />
+            <div className="fixed inset-0 mesh-gradient opacity-20 pointer-events-none -z-30" />
+            <div className="fixed inset-0 bg-noise opacity-[0.02] mix-blend-overlay pointer-events-none -z-20" />
 
-            {/* 2. Style Layer: Global Mesh Gradients */}
-            <div className="fixed inset-0 mesh-gradient opacity-40 mix-blend-screen -z-20 pointer-events-none" />
-
-            {/* 3. Style Layer: Noise Overlay */}
-            <div className="fixed inset-0 bg-noise opacity-[0.03] mix-blend-overlay -z-10 pointer-events-none" />
-
-            {/* 4. Interactive Layer: Dynamic Spotlight */}
+            {/* Interactive Spotlight */}
             {!isMobile && (
                 <motion.div
-                    className="fixed inset-0 z-0 pointer-events-none transition-opacity duration-300"
+                    className="fixed inset-0 z-[-10] pointer-events-none"
                     style={{
-                        background: `radial-gradient(600px circle at ${spotlightX}px ${spotlightY}px, rgba(0, 240, 255, 0.05), transparent 80%)`,
+                        background: `radial-gradient(800px circle at ${spotlightX}px ${spotlightY}px, var(--color-primary-soft), transparent 80%)`,
                     }}
                 />
             )}
@@ -53,63 +49,65 @@ const Layout = ({ children }) => {
             <Navbar />
 
             <motion.main
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-                className="relative z-10 pt-20"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="relative z-10 pt-[100px]"
             >
-                {children}
+                <div className="container-fluid">
+                    {children}
+                </div>
             </motion.main>
 
-            <footer className="relative z-10 py-24 px-6 border-t border-white/5 mt-32 bg-black/40 backdrop-blur-sm">
-                <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-                        <div className="space-y-6">
-                            <span className="text-3xl font-black tracking-tighter uppercase italic">
-                                PIRATE<span className="text-cyan-400">.</span>
+            <footer className="relative z-10 py-[var(--space-2xl)] border-t border-[var(--glass-border)] mt-[var(--space-2xl)] bg-[var(--color-bg-base)]/50 backdrop-blur-[var(--glass-blur)]">
+                <div className="container-fluid">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[var(--space-lg)] mb-[var(--space-xl)]">
+                        <div className="space-y-[var(--space-sm)]">
+                            <span className="text-[var(--fs-xl)] font-black tracking-tighter uppercase italic">
+                                PIRATE<span className="text-[var(--color-primary)]">.</span>
                             </span>
-                            <p className="text-gray-500 text-sm leading-relaxed max-w-xs">
+                            <p className="text-[var(--color-text-muted)] text-[var(--fs-sm)] leading-relaxed max-w-xs font-medium">
                                 Strategically architecting Web3 communities and building scalable decentralized ecosystems since 2022.
                             </p>
                         </div>
 
-                        <div className="space-y-4">
-                            <h4 className="text-xs font-black text-white uppercase tracking-widest">Navigation</h4>
-                            <div className="flex flex-col gap-2 text-gray-500 text-sm">
-                                <a href="/" className="hover:text-cyan-400 transition-colors">Home</a>
-                                <a href="/developer" className="hover:text-cyan-400 transition-colors">Developer Work</a>
-                                <a href="/community" className="hover:text-cyan-400 transition-colors">Community Work</a>
-                                <a href="/contact" className="hover:text-cyan-400 transition-colors">Let's Connect</a>
+                        <div className="space-y-[var(--space-xs)]">
+                            <h4 className="text-[var(--fs-xs)] font-black text-[var(--color-text-main)] uppercase tracking-[0.2em]">Navigation</h4>
+                            <div className="flex flex-col gap-[var(--space-2xs)] text-[var(--color-text-muted)] text-[var(--fs-sm)] font-medium">
+                                <a href="/" className="hover:text-[var(--color-primary)] transition-colors">Home</a>
+                                <a href="/developer" className="hover:text-[var(--color-primary)] transition-colors">Developer Work</a>
+                                <a href="/community" className="hover:text-[var(--color-primary)] transition-colors">Community Work</a>
+                                <a href="/contact" className="hover:text-[var(--color-primary)] transition-colors">Let's Connect</a>
                             </div>
                         </div>
 
-                        <div className="space-y-4">
-                            <h4 className="text-xs font-black text-white uppercase tracking-widest">Connect</h4>
-                            <div className="flex flex-col gap-2 text-gray-500 text-sm">
-                                <a href="https://x.com/pirstaef" target="_blank" className="hover:text-cyan-400 transition-colors">X (Twitter)</a>
-                                <a href="https://t.me/pirstaef" target="_blank" className="hover:text-cyan-400 transition-colors">Telegram</a>
-                                <a href="https://github.com/mohit-solidity" target="_blank" className="hover:text-cyan-400 transition-colors">GitHub</a>
-                                <a href="#" className="hover:text-cyan-400 transition-colors">Discord</a>
+                        <div className="space-y-[var(--space-xs)]">
+                            <h4 className="text-[var(--fs-xs)] font-black text-[var(--color-text-main)] uppercase tracking-[0.2em]">Connect</h4>
+                            <div className="flex flex-col gap-[var(--space-2xs)] text-[var(--color-text-muted)] text-[var(--fs-sm)] font-medium">
+                                <a href="https://x.com/pirstaef" target="_blank" className="hover:text-[var(--color-primary)] transition-colors">X (Twitter)</a>
+                                <a href="https://t.me/pirstaef" target="_blank" className="hover:text-[var(--color-primary)] transition-colors">Telegram</a>
+                                <a href="https://github.com/mohit-solidity" target="_blank" className="hover:text-[var(--color-primary)] transition-colors">GitHub</a>
+                                <a href="#" className="hover:text-[var(--color-primary)] transition-colors">Discord</a>
                             </div>
                         </div>
 
-                        <div className="space-y-4">
-                            <h4 className="text-xs font-black text-white uppercase tracking-widest">Status</h4>
-                            <div className="flex items-center gap-2 text-green-500 text-sm font-bold animate-pulse">
-                                <div className="w-2 h-2 rounded-full bg-green-500" />
+                        <div className="space-y-[var(--space-xs)]">
+                            <h4 className="text-[var(--fs-xs)] font-black text-[var(--color-text-main)] uppercase tracking-[0.2em]">Status</h4>
+                            <div className="flex items-center gap-[var(--space-xs)] text-green-400 text-[var(--fs-sm)] font-bold italic">
+                                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_green]" />
                                 Available for Senior Roles
                             </div>
                         </div>
                     </div>
 
-                    <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-                        <span className="text-gray-600 text-[10px] uppercase font-bold tracking-[0.2em]">
+                    <div className="pt-[var(--space-md)] border-t border-[var(--glass-border)] flex flex-col md:flex-row justify-between items-center gap-[var(--space-md)]">
+                        <span className="text-[var(--color-text-dim)] text-[var(--fs-xs)] uppercase font-bold tracking-[0.2em]">
                             © 2026 PIRATE — LAST LEVEL WEB3 ARCHITECTURE
                         </span>
-                        <div className="flex gap-6 text-gray-600 hover:text-gray-400 transition-colors">
-                            <Zap size={14} />
-                            <Target size={14} />
-                            <Shield size={14} />
+                        <div className="flex gap-[var(--space-md)] text-[var(--color-text-dim)]">
+                            <Zap size={14} className="hover:text-[var(--color-primary)] transition-colors cursor-pointer" />
+                            <Target size={14} className="hover:text-[var(--color-primary)] transition-colors cursor-pointer" />
+                            <Shield size={14} className="hover:text-[var(--color-primary)] transition-colors cursor-pointer" />
                         </div>
                     </div>
                 </div>

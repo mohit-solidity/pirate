@@ -1,8 +1,126 @@
 @import "tailwindcss";
 
-@theme {
-  --color-neon-cyan: #00f0ff;
-  --color-deep-black: #050505;
+/* 
+  Modern CSS Layering for Structure 
+*/
+@layer base, components, utilities;
+
+@layer base {
+  :root {
+    /* --- Core Palette (HSLA for better transparency control) --- */
+    --clr-black-600: 240 10% 2%;
+    --clr-black-500: 240 10% 4%;
+    --clr-black-400: 240 10% 8%;
+
+    --clr-primary-500: 184 100% 50%;
+    /* Cyan 500 equivalent */
+    --clr-secondary-500: 271 91% 65%;
+    /* Purple 500 equivalent */
+
+    --clr-white: 0 0% 100%;
+    --clr-gray-300: 240 5% 84%;
+    --clr-gray-500: 240 5% 48%;
+
+    /* --- Semantic Tokens --- */
+    --color-bg-deep: hsl(var(--clr-black-600));
+    --color-bg-base: hsl(var(--clr-black-500));
+    --color-bg-surface: hsl(var(--clr-black-400));
+
+    --color-primary: hsl(var(--clr-primary-500));
+    --color-primary-soft: hsla(var(--clr-primary-500) / 0.1);
+
+    --color-text-main: hsla(var(--clr-white) / 0.95);
+    --color-text-muted: hsla(var(--clr-white) / 0.6);
+    --color-text-dim: hsla(var(--clr-white) / 0.4);
+
+    /* --- Fluid Typography --- */
+    --fs-xs: clamp(0.7rem, 0.66rem + 0.18vw, 0.8rem);
+    --fs-sm: clamp(0.8rem, 0.76rem + 0.22vw, 0.93rem);
+    --fs-base: clamp(1rem, 0.96rem + 0.22vw, 1.13rem);
+    --fs-lg: clamp(1.25rem, 1.16rem + 0.43vw, 1.5rem);
+    --fs-xl: clamp(1.56rem, 1.41rem + 0.76vw, 2rem);
+    --fs-2xl: clamp(1.95rem, 1.71rem + 1.2vw, 2.66rem);
+    --fs-3xl: clamp(2.44rem, 2.05rem + 1.93vw, 3.55rem);
+    --fs-hero: clamp(3.05rem, 2.4rem + 3.2vw, 6rem);
+
+    /* --- Fluid Spacing --- */
+    --space-2xs: clamp(0.25rem, 0.23rem + 0.09vw, 0.31rem);
+    --space-xs: clamp(0.5rem, 0.47rem + 0.13vw, 0.59rem);
+    --space-sm: clamp(0.75rem, 0.7rem + 0.26vw, 0.94rem);
+    --space-md: clamp(1.13rem, 1.04rem + 0.43vw, 1.38rem);
+    --space-lg: clamp(1.69rem, 1.55rem + 0.69vw, 2.06rem);
+    --space-xl: clamp(2.53rem, 2.33rem + 1.03vw, 3.09rem);
+    --space-2xl: clamp(3.8rem, 3.49rem + 1.55vw, 4.64rem);
+
+    /* --- Glassmorphism --- */
+    --glass-bg: hsla(var(--clr-white) / 0.03);
+    --glass-border: hsla(var(--clr-white) / 0.08);
+    --glass-blur: 16px;
+
+    /* --- Layout Container --- */
+    --max-content-width: 80rem;
+    --container-padding: var(--space-md);
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-bg-deep);
+    color: var(--color-text-main);
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    line-height: 1.1;
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+  }
+}
+
+@layer components {
+  .container-fluid {
+    inline-size: min(100%, var(--max-content-width));
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+  }
+
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--space-lg);
+  }
+
+  .text-fluid-hero {
+    font-size: var(--fs-hero);
+    font-weight: 900;
+  }
+
+  .text-fluid-3xl {
+    font-size: var(--fs-3xl);
+    font-weight: 800;
+  }
+
+  .text-fluid-base {
+    font-size: var(--fs-base);
+  }
 }
 
 @layer utilities {
@@ -22,13 +140,12 @@
 
   .bg-noise {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    mask-image: linear-gradient(to bottom, black, transparent);
   }
 
   .mesh-gradient {
-    background: radial-gradient(at 0% 0%, rgba(0, 240, 255, 0.15) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(0, 240, 255, 0.15) 0px, transparent 50%),
-      radial-gradient(at 0% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%);
+    background: radial-gradient(at 0% 0%, hsla(var(--clr-primary-500) / 0.1) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(var(--clr-secondary-500) / 0.1) 0px, transparent 50%);
   }
 
   .no-scrollbar::-webkit-scrollbar {
@@ -39,18 +156,62 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-}
 
-body {
-  background-color: var(--color-deep-black);
-  color: white;
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
-}
+  /* Elite Architectural Utilities */
+  .grid-subgrid {
+    display: grid;
+    grid-template-rows: subgrid !important;
+  }
 
-/* Custom Selection */
-::selection {
-  background: rgba(0, 240, 255, 0.3);
-  color: white;
+  .mask-radial {
+    mask-image: radial-gradient(circle, black 30%, transparent 100%) !important;
+  }
+
+  .mask-edge-fade {
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%) !important;
+  }
+
+  .grid-intrinsic {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    gap: var(--space-md);
+  }
+
+  .glass-grain {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .glass-grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: inherit;
+  }
+
+  .glass-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .aspect-video-fluid {
+    aspect-ratio: 16 / 9;
+  }
+
+  .grid-auto-fit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
+    gap: var(--space-md);
+  }
 }

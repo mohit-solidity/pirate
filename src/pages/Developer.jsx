@@ -3,41 +3,34 @@ import Layout from '../components/layout/Layout';
 import ProjectCard from '../components/ui/ProjectCard';
 import CodeBlock from '../components/ui/CodeBlock';
 import { motion } from 'framer-motion';
-import { Layers, Database, Shield } from 'lucide-react';
+import { Layers, Database, Shield, Github } from 'lucide-react';
+import Button from '../components/ui/Button';
 
 const Developer = () => {
     const projects = [
         {
             title: 'Subscription DApp',
-            description: 'A modular recurring payment system on-chain with automated renewals.',
-            features: ['EIP-5827 Support', 'Gas-efficient Renewals', 'NFT Subscriptions', 'Admin Dashboard'],
+            description: 'A modular recurring payment system on-chain with automated renewals. Optimized for gas efficiency and user transparency.',
+            features: ['EIP-5827 Support', 'Gas-efficient Logic', 'NFT Memberships', 'On-chain Governance'],
             tech: ['Solidity', 'React', 'The Graph', 'Hardhat'],
-            github: '#',
+            github: 'https://github.com/mohit-solidity',
             demo: 'https://subscription-dapp-two.vercel.app/'
         },
         {
             title: 'Bidding DApp',
-            description: 'High-performance auction platform with blind bidding and instant settlement.',
-            features: ['Blind Bids', 'Verifiable Randomness', 'Escrow System', 'Auto-Settlement'],
-            tech: ['Solidity', 'Web3.js', 'Chainlink VRF', 'Foundry'],
-            github: '#',
+            description: 'High-performance auction platform with blind bidding and instant settlement. Features verifiable randomness for fair distributions.',
+            features: ['Blind Bids', 'VRF Randomness', 'Escrow System', 'Auto-Settlement'],
+            tech: ['Solidity', 'Web3.js', 'Chainlink', 'Foundry'],
+            github: 'https://github.com/mohit-solidity',
             demo: 'https://mohit-solidity.github.io/new-Bidding-Dapp/'
         },
         {
             title: 'Staking DApp',
-            description: 'Yield-optimized staking protocol with multi-tier rewards and lockup periods.',
+            description: 'Yield-optimized staking protocol with multi-tier rewards and lockup periods. Integrated with custom analytics indexing.',
             features: ['Dynamic APR', 'Compound Rewards', 'Stake Locks', 'Analytics API'],
             tech: ['Solidity', 'Ethers.js', 'Tailwind', 'Node.js'],
-            github: '#',
+            github: 'https://github.com/mohit-solidity',
             demo: 'https://mohit-solidity.github.io/StakingDapp'
-        },
-        {
-            title: 'TimeStaking DApp',
-            description: 'Time-locked asset management protocol for long-term holders.',
-            features: ['Time-lock Vaults', 'Penalty Logic', 'Governance Voting', 'Mobile-First UI'],
-            tech: ['Solidity', 'TypeScript', 'Vite', 'IPFS'],
-            github: '#',
-            demo: 'https://mohit-solidity.github.io/TimeStakingDapp/'
         }
     ];
 
@@ -59,56 +52,73 @@ contract SubscriptionManager is Ownable {
 
     return (
         <Layout>
-            <div className="max-w-7xl mx-auto px-6 py-20">
+            <section className="py-[var(--space-2xl)]">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mb-20"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="mb-[var(--space-2xl)] max-w-4xl"
                 >
-                    <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-4 text-white">
-                        Developer <span className="text-cyan-400">Portfolio</span>
+                    <div className="flex items-center gap-[var(--space-sm)] mb-[var(--space-sm)]">
+                        <div className="w-12 h-1 bg-[var(--color-primary)] rounded-full" />
+                        <span className="text-[var(--fs-xs)] font-black text-[var(--color-primary)] uppercase tracking-widest italic">System Architect</span>
+                    </div>
+                    <h1 className="text-fluid-3xl md:text-fluid-hero font-black tracking-tighter mb-[var(--space-md)] text-[var(--color-text-main)] leading-[0.9] uppercase">
+                        Developer <span className="text-[var(--color-primary)]">Portfolio.</span>
                     </h1>
-                    <p className="text-xl text-gray-400 max-w-2xl leading-relaxed">
-                        I architect and build high-performance decentralized applications, focusing on security, scalability, and seamless user experiences. View all source code on <a href="https://github.com/mohit-solidity" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">GitHub</a>.
+                    <p className="text-[var(--fs-lg)] text-[var(--color-text-muted)] max-w-2xl leading-relaxed font-medium">
+                        I architect and build industrial-grade decentralized applications, maintaining a strict focus on security protocols, gas optimization, and seamless UX flow.
                     </p>
                 </motion.div>
 
                 {/* Projects Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-32">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[var(--space-lg)] mb-[var(--space-2xl)]">
                     {projects.map((project, idx) => (
                         <ProjectCard key={idx} project={project} />
                     ))}
                 </div>
 
                 {/* Architecture Section */}
-                <section className="mb-32">
-                    <div className="flex flex-col md:flex-row gap-16 items-start">
-                        <div className="flex-1">
-                            <h2 className="text-4xl font-bold mb-8 flex items-center gap-4">
-                                <Layers className="text-cyan-400" /> System Architecture
-                            </h2>
-                            <div className="space-y-8">
-                                <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
-                                    <h3 className="text-xl font-bold mb-2 flex items-center gap-2"><Shield className="w-5 h-5 text-cyan-500" /> Smart Contract Design</h3>
-                                    <p className="text-gray-400 text-sm">Modular architecture using OpenZeppelin standards. Heavy focus on gas optimization and access control protocols.</p>
+                <section className="py-[var(--space-2xl)] border-t border-[var(--glass-border)]">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-[var(--space-2xl)] items-start">
+                        <div className="space-y-[var(--space-xl)]">
+                            <div>
+                                <h2 className="text-[var(--fs-2xl)] font-black mb-[var(--space-lg)] flex items-center gap-4 uppercase tracking-tighter italic">
+                                    <Layers className="text-[var(--color-primary)]" /> System Core
+                                </h2>
+                                <p className="text-[var(--color-text-muted)] font-medium leading-relaxed mb-8">
+                                    My approach to Web3 development centers on the "Modular Stack" — separating high-concurrency logic from immutable core protocols.
+                                </p>
+                            </div>
+
+                            <div className="space-y-6">
+                                <div className="p-6 rounded-[var(--space-xl)] bg-[var(--color-bg-surface)]/50 border border-[var(--glass-border)] backdrop-blur-md">
+                                    <h3 className="text-[var(--fs-base)] font-black mb-2 flex items-center gap-3 uppercase tracking-tight">
+                                        <Shield className="w-5 h-5 text-[var(--color-primary)]" /> Secure Contracts
+                                    </h3>
+                                    <p className="text-[var(--color-text-dim)] text-[var(--fs-sm)] font-medium">OpenZeppelin standards combined with custom gas-optimized patterns and rigorous automated testing.</p>
                                 </div>
-                                <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
-                                    <h3 className="text-xl font-bold mb-2 flex items-center gap-2"><Layers className="w-5 h-5 text-cyan-500" /> Frontend & Wallet</h3>
-                                    <p className="text-gray-400 text-sm">React/Vite with Wagmi/RainbowKit for seamless multi-wallet integration. Global state management with Zustand.</p>
+                                <div className="p-6 rounded-[var(--space-xl)] bg-[var(--color-bg-surface)]/50 border border-[var(--glass-border)] backdrop-blur-md">
+                                    <h3 className="text-[var(--fs-base)] font-black mb-2 flex items-center gap-3 uppercase tracking-tight">
+                                        <Database className="w-5 h-5 text-[var(--color-primary)]" /> Optimized Data
+                                    </h3>
+                                    <p className="text-[var(--color-text-dim)] text-[var(--fs-sm)] font-medium">Custom Subgraphs for real-time indexing, ensuring a highly responsive frontend for blockchain data.</p>
                                 </div>
-                                <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
-                                    <h3 className="text-xl font-bold mb-2 flex items-center gap-2"><Database className="w-5 h-5 text-cyan-500" /> Data & Indexing</h3>
-                                    <p className="text-gray-400 text-sm">Custom Subgraphs on The Graph for real-time indexing of blockchain events and historical data auditing.</p>
-                                </div>
+                            </div>
+
+                            <div className="pt-8">
+                                <Button onClick={() => window.open('https://github.com/mohit-solidity', '_blank')}>
+                                    EXPLORE SOURCE ON GITHUB <Github className="ml-2" />
+                                </Button>
                             </div>
                         </div>
 
-                        <div className="flex-1 w-full">
+                        <div className="w-full">
                             <CodeBlock code={solidityCode} language="solidity" title="Subscription.sol" />
                         </div>
                     </div>
                 </section>
-            </div>
+            </section>
         </Layout>
     );
 };
