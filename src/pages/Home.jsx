@@ -1,11 +1,12 @@
 import React from 'react';
 import Layout from '../components/layout/Layout';
 import Button from '../components/ui/Button';
-import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Users, ArrowRight, Zap, Target, Shield, Globe, Rocket, Cpu, BarChart3, MessageSquare, TrendingUp, Code2 } from 'lucide-react';
 import { cn } from '../utils/cn';
 
 const Home = () => {
+    const navigate = useNavigate();
     const skillCategories = [
         {
             title: "Growth Architecture",
@@ -94,10 +95,10 @@ const Home = () => {
                                 transition={{ duration: 0.8, delay: 0.6 }}
                                 className="flex flex-col sm:flex-row items-center gap-6 pt-4"
                             >
-                                <Button onClick={() => window.location.href = '/developer'} className="w-full sm:w-auto h-16 px-10 text-lg font-black uppercase tracking-widest rounded-3xl group" variant="primary">
+                                <Button onClick={() => navigate('/developer')} className="w-full sm:w-auto h-16 px-10 text-lg font-black uppercase tracking-widest rounded-3xl group" variant="primary">
                                     View Dev Work <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                                 </Button>
-                                <Button onClick={() => window.location.href = '/community'} className="w-full sm:w-auto h-16 px-10 text-lg font-black uppercase tracking-widest rounded-3xl group transition-all" variant="secondary">
+                                <Button onClick={() => navigate('/community')} className="w-full sm:w-auto h-16 px-10 text-lg font-black uppercase tracking-widest rounded-3xl group transition-all" variant="secondary">
                                     Community Work
                                 </Button>
                             </motion.div>
