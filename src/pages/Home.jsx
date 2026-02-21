@@ -113,7 +113,7 @@ const Home = () => {
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-[5rem] blur-[100px] animate-pulse" />
 
-                                <div className="relative h-full w-full bg-black/40 backdrop-blur-3xl border border-white/10 rounded-[5rem] overflow-hidden flex items-center justify-center group shadow-[0_0_100px_rgba(0,240,255,0.1)]">
+                                <div className="relative h-full w-full bg-black/40 backdrop-blur-3xl border border-white/10 rounded-full overflow-hidden flex items-center justify-center group shadow-[0_0_100px_rgba(0,240,255,0.1)]">
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
                                     <img
                                         src="https://pbs.twimg.com/profile_images/1922483710185897986/q35tKv7r_400x400.jpg"
@@ -133,6 +133,19 @@ const Home = () => {
                                     </motion.div>
                                     <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 5, repeat: Infinity, delay: 1 }} className="absolute bottom-32 left-10 p-4 bg-purple-500/10 border border-purple-500/20 rounded-2xl backdrop-blur-xl text-purple-400 z-30">
                                         <Rocket size={24} />
+                                    </motion.div>
+
+                                    <motion.div
+                                        initial={{ scale: 0 }}
+                                        animate={{ scale: 1 }}
+                                        transition={{ delay: 1.5, type: 'spring' }}
+                                        className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-[0_0_30px_rgba(6,182,212,0.5)] border-4 border-[#080808] z-40 overflow-hidden"
+                                    >
+                                        <img
+                                            src="https://pbs.twimg.com/profile_images/1922483710185897986/q35tKv7r_400x400.jpg"
+                                            alt="Logo"
+                                            className="w-full h-full object-cover"
+                                        />
                                     </motion.div>
                                 </div>
                             </motion.div>

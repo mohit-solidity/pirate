@@ -29,8 +29,12 @@ const Navbar = () => {
         )}>
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 <Link to="/" className="flex items-center gap-2 group">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.3)] group-hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] transition-all">
-                        <span className="text-black font-bold text-xl">P</span>
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 overflow-hidden flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.3)] group-hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] transition-all">
+                        <img
+                            src="https://pbs.twimg.com/profile_images/1922483710185897986/q35tKv7r_400x400.jpg"
+                            alt="Logo"
+                            className="w-full h-full object-cover"
+                        />
                     </div>
                     <span className="text-white font-bold text-xl tracking-tighter uppercase hidden sm:block">
                         Pirate<span className="text-cyan-400">.</span>
