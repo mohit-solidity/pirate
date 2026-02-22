@@ -13,7 +13,7 @@ const Developer = () => {
             title: 'Subscription DApp',
             description: 'A modular recurring payment system on-chain with automated renewals. Optimized for gas efficiency and user transparency.',
             features: ['EIP-5827 Support', 'Gas-efficient Logic', 'NFT Memberships', 'On-chain Governance'],
-            tech: ['Solidity', 'React', 'The Graph', 'Hardhat'],
+            tech: ['Solidity', 'React', 'Hardhat'],
             github: 'https://github.com/mohit-solidity',
             demo: 'https://subscription-dapp-two.vercel.app/'
         },
@@ -21,7 +21,7 @@ const Developer = () => {
             title: 'Bidding DApp',
             description: 'High-performance auction platform with blind bidding and instant settlement. Features verifiable randomness for fair distributions.',
             features: ['Blind Bids', 'VRF Randomness', 'Escrow System', 'Auto-Settlement'],
-            tech: ['Solidity', 'Web3.js', 'Chainlink', 'Foundry'],
+            tech: ['Solidity', 'Web3.js', 'Foundry'],
             github: 'https://github.com/mohit-solidity',
             demo: 'https://mohit-solidity.github.io/new-Bidding-Dapp/'
         },

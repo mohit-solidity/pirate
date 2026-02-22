@@ -64,8 +64,7 @@ const ProjectCard = ({ project }) => {
                             <Terminal size={20} />
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--color-primary)]">Module_0{Math.floor(Math.random() * 9) + 1}</span>
-                            <span className="text-[10px] font-medium text-[var(--color-text-dim)] uppercase tracking-widest">Active_State: Stable</span>
+                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--color-primary)]">Project No. {Math.floor(Math.random() * 2) + 1}</span>
                         </div>
                     </div>
                 </div>
