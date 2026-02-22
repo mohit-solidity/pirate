@@ -5,11 +5,27 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/png" href="favicon-96x96.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pirate-web3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <title>Pirate-web3 | Luxury Dashboard</title>
 </head>
 
 <body>
   <div id="root"></div>
+  <!-- Expert Tier Visual Engine: SVG Shaders -->
+  <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
+    <filter id="heavy-distortion">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" />
+    </filter>
+    <filter id="hud-glow">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </svg>
+
   <script type="module" src="/src/main.jsx"></script>
 </body>
 

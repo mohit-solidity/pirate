@@ -2,8 +2,9 @@ import React from 'react';
 import Layout from '../components/layout/Layout';
 import ProjectCard from '../components/ui/ProjectCard';
 import CodeBlock from '../components/ui/CodeBlock';
+import Magnetic from '../components/ui/Magnetic';
 import { motion } from 'framer-motion';
-import { Layers, Database, Shield, Github } from 'lucide-react';
+import { Layers, Database, Shield, Github, Cpu } from 'lucide-react';
 import Button from '../components/ui/Button';
 
 const Developer = () => {
@@ -52,69 +53,87 @@ contract SubscriptionManager is Ownable {
 
     return (
         <Layout>
-            <section className="py-[var(--space-2xl)]">
+            <section className="py-[var(--space-2xl)] relative">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="mb-[var(--space-2xl)] max-w-4xl"
+                    transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
+                    className="mb-24 relative z-10 max-w-4xl"
                 >
-                    <div className="flex items-center gap-[var(--space-sm)] mb-[var(--space-sm)]">
-                        <div className="w-12 h-1 bg-[var(--color-primary)] rounded-full" />
-                        <span className="text-[var(--fs-xs)] font-black text-[var(--color-primary)] uppercase tracking-widest italic">System Architect</span>
+                    <div className="flex items-center gap-4 mb-6">
+                        <div className="w-12 h-[2px] bg-[var(--color-primary)] rounded-full" />
+                        <span className="text-[10px] font-black text-[var(--color-primary)] uppercase tracking-[0.4em] italic">System Architect</span>
                     </div>
-                    <h1 className="text-fluid-3xl md:text-fluid-hero font-black tracking-tighter mb-[var(--space-md)] text-[var(--color-text-main)] leading-[0.9] uppercase">
-                        Developer <span className="text-[var(--color-primary)]">Portfolio.</span>
+                    <h1 className="text-fluid-hero leading-[0.8] italic mb-10 italic uppercase">
+                        Developer <span className="text-grad-gold block">Portfolio.</span>
                     </h1>
-                    <p className="text-[var(--fs-lg)] text-[var(--color-text-muted)] max-w-2xl leading-relaxed font-medium">
+                    <p className="text-[var(--fs-lg)] text-[var(--color-text-dim)] max-w-2xl leading-relaxed font-medium tracking-wide">
                         I architect and build industrial-grade decentralized applications, maintaining a strict focus on security protocols, gas optimization, and seamless UX flow.
                     </p>
                 </motion.div>
 
-                {/* Projects Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[var(--space-lg)] mb-[var(--space-2xl)]">
-                    {projects.map((project, idx) => (
-                        <ProjectCard key={idx} project={project} />
-                    ))}
+                <div className="mb-32">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        {projects.map((project, idx) => (
+                            <ProjectCard key={idx} project={project} />
+                        ))}
+                    </div>
                 </div>
 
-                {/* Architecture Section */}
-                <section className="py-[var(--space-2xl)] border-t border-[var(--glass-border)]">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-[var(--space-2xl)] items-start">
-                        <div className="space-y-[var(--space-xl)]">
-                            <div>
-                                <h2 className="text-[var(--fs-2xl)] font-black mb-[var(--space-lg)] flex items-center gap-4 uppercase tracking-tighter italic">
-                                    <Layers className="text-[var(--color-primary)]" /> System Core
-                                </h2>
-                                <p className="text-[var(--color-text-muted)] font-medium leading-relaxed mb-8">
+                <section className="py-32 border-t border-[var(--glass-border)]">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+                        <div className="space-y-16">
+                            <motion.div
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                            >
+                                <div className="flex items-center gap-4 mb-10">
+                                    <Layers className="text-[var(--color-primary)]" size={32} />
+                                    <h2 className="text-[var(--fs-2xl)] font-bold text-[var(--color-text-main)] uppercase italic tracking-tighter">System Core</h2>
+                                </div>
+                                <p className="text-[var(--fs-base)] text-[var(--color-text-muted)] font-medium leading-relaxed max-w-lg tracking-wide">
                                     My approach to Web3 development centers on the "Modular Stack" — separating high-concurrency logic from immutable core protocols.
                                 </p>
-                            </div>
+                            </motion.div>
 
-                            <div className="space-y-6">
-                                <div className="p-6 rounded-[var(--space-xl)] bg-[var(--color-bg-surface)]/50 border border-[var(--glass-border)] backdrop-blur-md">
-                                    <h3 className="text-[var(--fs-base)] font-black mb-2 flex items-center gap-3 uppercase tracking-tight">
+                            <div className="grid grid-cols-1 gap-6">
+                                <motion.div
+                                    whileHover={{ x: 10 }}
+                                    className="p-10 rounded-[32px] glass-luxe border border-[var(--glass-border)] group"
+                                >
+                                    <h3 className="text-[var(--fs-base)] font-bold mb-4 flex items-center gap-4 uppercase tracking-widest text-[var(--color-text-main)]">
                                         <Shield className="w-5 h-5 text-[var(--color-primary)]" /> Secure Contracts
                                     </h3>
-                                    <p className="text-[var(--color-text-dim)] text-[var(--fs-sm)] font-medium">OpenZeppelin standards combined with custom gas-optimized patterns and rigorous automated testing.</p>
-                                </div>
-                                <div className="p-6 rounded-[var(--space-xl)] bg-[var(--color-bg-surface)]/50 border border-[var(--glass-border)] backdrop-blur-md">
-                                    <h3 className="text-[var(--fs-base)] font-black mb-2 flex items-center gap-3 uppercase tracking-tight">
-                                        <Database className="w-5 h-5 text-[var(--color-primary)]" /> Optimized Data
+                                    <p className="text-[var(--color-text-dim)] text-[13px] font-medium leading-relaxed">
+                                        OpenZeppelin standards combined with custom gas-optimized patterns and rigorous automated testing.
+                                    </p>
+                                </motion.div>
+                                <motion.div
+                                    whileHover={{ x: 10 }}
+                                    className="p-10 rounded-[32px] glass-luxe border border-[var(--glass-border)] group"
+                                >
+                                    <h3 className="text-[var(--fs-base)] font-bold mb-4 flex items-center gap-4 uppercase tracking-widest text-[var(--color-text-main)]">
+                                        <Database className="w-5 h-5 text-[var(--color-accent)]" /> Optimized Data
                                     </h3>
-                                    <p className="text-[var(--color-text-dim)] text-[var(--fs-sm)] font-medium">Custom Subgraphs for real-time indexing, ensuring a highly responsive frontend for blockchain data.</p>
-                                </div>
+                                    <p className="text-[var(--color-text-dim)] text-[13px] font-medium leading-relaxed">
+                                        Custom Subgraphs for real-time indexing, ensuring a highly responsive frontend for blockchain data.
+                                    </p>
+                                </motion.div>
                             </div>
 
-                            <div className="pt-8">
-                                <Button onClick={() => window.open('https://github.com/mohit-solidity', '_blank')}>
-                                    EXPLORE SOURCE ON GITHUB <Github className="ml-2" />
+                            <Magnetic strength={0.3}>
+                                <Button onClick={() => window.open('https://github.com/mohit-solidity', '_blank')} className="h-16 px-10 text-[12px] shadow-2xl" variant="primary">
+                                    EXPLORE SOURCE ON GITHUB <Github className="ml-3 w-4 h-4" />
                                 </Button>
-                            </div>
+                            </Magnetic>
                         </div>
 
-                        <div className="w-full">
-                            <CodeBlock code={solidityCode} language="solidity" title="Subscription.sol" />
+                        <div className="relative group">
+                            <div className="absolute -inset-4 bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-accent)]/10 rounded-[40px] blur-3xl opacity-50 group-hover:opacity-100 transition-opacity" />
+                            <div className="relative glass-luxe rounded-[32px] overflow-hidden border border-[var(--glass-border)] shadow-2xl">
+                                <CodeBlock code={solidityCode} language="solidity" title="Subscription.sol" />
+                            </div>
                         </div>
                     </div>
                 </section>

@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Layout from '../components/layout/Layout';
-import { motion } from 'framer-motion';
-import { Users, BarChart3, Twitter, Send, Zap, ArrowRight, Target, Gamepad2, Coins, Cpu, Layers } from 'lucide-react';
+import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
+import { Users, BarChart3, Twitter, Send, Zap, ArrowRight, Target, Gamepad2, Coins, Cpu, Layers, Activity, Hexagon } from 'lucide-react';
+import { cn } from '../utils/cn';
 
 const Community = () => {
+    // Shared 3D Mouse Track for Hero
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    const handleMouseMove = ({ clientX, clientY, currentTarget }) => {
+        const { left, top, width, height } = currentTarget.getBoundingClientRect();
+        const x = (clientX - left) / width - 0.5;
+        const y = (clientY - top) / height - 0.5;
+        mouseX.set(x);
+        mouseY.set(y);
+    };
+
     const categories = [
         {
             id: 'casino',
@@ -136,175 +149,175 @@ const Community = () => {
     ];
 
     const metrics = [
-        { label: 'Users Managed', value: '500K+', icon: Users },
-        { label: 'Engage Rate', value: '32%', icon: BarChart3 },
-        { label: 'Campaigns', value: '80+', icon: Send },
-        { label: 'Protocols', value: '15+', icon: Layers }
+        { label: 'Active Management', value: '500K+', icon: Users, detail: 'Real-time flow' },
+        { label: 'Increase Engagement', value: '32%', icon: BarChart3, detail: 'Node response' },
+        { label: 'Core Campaigns', value: '80+', icon: Send, detail: 'Tactical drop' },
+        { label: 'Protocols', value: '15+', icon: Layers, detail: 'L1/L2 Grid' }
     ];
-
-    const scrollToSection = (id) => {
-        const element = document.getElementById(id);
-        if (element) {
-            const headerOffset = 100;
-            const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        }
-    };
 
     return (
         <Layout>
-            <section className="py-[var(--space-2xl)] relative">
-                <div className="container-fluid relative z-10 text-center">
+            <section
+                className="min-h-[80vh] flex flex-col items-center justify-center relative overflow-hidden perspective-container"
+                onMouseMove={handleMouseMove}
+            >
+                <motion.div
+                    className="container-fluid relative z-10 text-center preserve-3d"
+                    style={{
+                        rotateX: useSpring(useTransform(mouseY, [-0.5, 0.5], [10, -10])),
+                        rotateY: useSpring(useTransform(mouseX, [-0.5, 0.5], [-10, 10])),
+                    }}
+                >
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="inline-flex items-center gap-[var(--space-sm)] px-[var(--space-md)] py-[var(--space-xs)] rounded-full bg-[var(--color-primary-soft)] border border-[var(--color-primary)]/20 text-[var(--color-primary)] text-[var(--fs-xs)] font-black uppercase tracking-widest mb-[var(--space-lg)]"
+                        className="inline-flex items-center gap-3 px-6 py-2 rounded-full glass-luxe text-[10px] font-bold uppercase tracking-[0.5em] text-[var(--color-primary)] mb-10 border border-[var(--color-primary)]/20"
                     >
-                        Growth Architecture
+                        <Hexagon size={14} className="animate-spin-slow" />Community Manager
                     </motion.div>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-fluid-hero font-black tracking-tighter mb-[var(--space-md)] text-[var(--color-text-main)] leading-none uppercase italic"
-                    >
-                        Community <span className="text-[var(--color-primary)]">Management.</span>
-                    </motion.h1>
-                    <p className="text-[var(--fs-base)] md:text-[var(--fs-lg)] text-[var(--color-text-muted)] max-w-3xl mx-auto font-medium leading-relaxed mask-edge-fade">
-                        Strategizing high-velocity growth and community governance across 15+ Web3 protocols. From trending memecoins to institutional infrastructure.
-                    </p>
-                </div>
 
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 overflow-hidden pointer-events-none opacity-30">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60rem] h-[60rem] bg-[var(--color-primary)]/10 mask-radial blur-3xl animate-pulse" />
+                    <h1 className="text-fluid-hero font-bold tracking-tighter leading-[0.85] uppercase italic">
+                        <span className="text-[var(--color-text-main)] block">Community</span>
+                        <span className="text-grad-gold block">Management.</span>
+                    </h1>
+
+                    <div className="w-48 h-[1px] bg-gradient-to-r from-transparent via-[var(--color-primary)]/40 to-transparent mx-auto my-12" />
+
+                    <p className="text-[var(--fs-lg)] text-[var(--color-text-dim)] max-w-2xl mx-auto font-medium leading-relaxed tracking-wide uppercase">
+                        Deploying strategic growth architecture across hyper-velocity Web3 protocols. <br />
+                        Tactical governance at the intersection of DeFi and Culture.
+                    </p>
+                </motion.div>
+
+                <div className="absolute inset-0 -z-10 opacity-30 pointer-events-none">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1400px] h-[1400px] bg-[radial-gradient(circle,hsla(var(--clr-purple)/0.1)_0%,transparent_60%)] animate-pulse" />
                 </div>
             </section>
 
-            <section className="py-[var(--space-xl)] mb-[var(--space-2xl)]">
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-[var(--space-md)]">
+            <section className="py-32 relative z-20">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {metrics.map((metric, i) => (
                         <motion.div
                             key={i}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 }}
-                            className="glass-grain p-[var(--space-lg)] rounded-[var(--space-xl)] bg-[var(--color-bg-surface)] border border-[var(--glass-border)] text-center group transition-all hover:border-[var(--color-primary)]/30 hover:-translate-y-1"
+                            transition={{ delay: i * 0.1, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+                            className="glass-luxe p-10 rounded-[32px] border border-[var(--glass-border)] group relative overflow-hidden"
                         >
-                            <div className="p-3 bg-[var(--color-primary-soft)] rounded-xl text-[var(--color-primary)] w-fit mx-auto mb-6 group-hover:scale-110 transition-transform shadow-[0_0_15px_var(--color-primary-soft)]">
-                                <metric.icon size={24} />
+                            <div className="flex justify-between items-start mb-16">
+                                <div className="p-4 glass-luxe rounded-2xl text-[var(--color-primary)] border border-[var(--color-primary)]/10">
+                                    <metric.icon size={22} />
+                                </div>
+                                <span className="text-[9px] font-black text-[var(--color-primary)]/40 tracking-[0.4em] uppercase">{metric.detail}</span>
                             </div>
-                            <h3 className="text-[var(--fs-2xl)] md:text-[var(--fs-3xl)] font-black text-[var(--color-text-main)] tracking-tighter mb-2 leading-none">{metric.value}</h3>
-                            <p className="text-[var(--fs-xs)] text-[var(--color-text-dim)] uppercase tracking-[0.2em] font-black">{metric.label}</p>
+
+                            <div className="relative z-10">
+                                <h3 className="text-[var(--fs-2xl)] font-bold text-[var(--color-text-main)] tracking-tighter mb-2 leading-none">
+                                    {metric.value}
+                                </h3>
+                                <p className="text-[10px] text-[var(--color-text-dim)] uppercase tracking-[0.3em] font-black">{metric.label}</p>
+                            </div>
                         </motion.div>
                     ))}
                 </div>
             </section>
 
-            <div className="sticky top-24 z-40 mb-[var(--space-2xl)] hidden md:block">
-                <div className="glass-card p-1.5 flex justify-center gap-1.5 bg-black/40 backdrop-blur-3xl shadow-2xl border-[var(--glass-border)] mx-auto w-fit rounded-full">
-                    {categories.map((cat) => (
-                        <button
-                            key={cat.id}
-                            onClick={() => scrollToSection(cat.id)}
-                            className="px-[var(--space-md)] py-[var(--space-xs)] rounded-full text-[var(--fs-xs)] font-black uppercase tracking-widest text-[var(--color-text-muted)] hover:text-[var(--color-primary)] hover:bg-[var(--color-primary-soft)] transition-all flex items-center gap-2"
-                        >
-                            <cat.icon size={14} />
-                            {cat.name}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            <div className="space-y-[var(--space-2xl)]">
+            <div className="space-y-64 py-48">
                 {categories.map((cat, ci) => (
-                    <section key={ci} id={cat.id} className="scroll-mt-32">
-                        <div className="flex items-center gap-[var(--space-md)] mb-[var(--space-xl)]">
-                            <div className="p-4 bg-[var(--color-primary-soft)] rounded-[var(--space-lg)] text-[var(--color-primary)] border border-[var(--color-primary)]/20 shadow-[0_0_20px_var(--color-primary-soft)]">
-                                <cat.icon size={32} />
+                    <section key={ci} className="container-fluid scroll-mt-32">
+                        <div className="flex items-end gap-10 mb-32 border-b border-[var(--glass-border)] pb-12 relative overflow-hidden">
+                            <span className="text-9xl font-bold text-[var(--color-primary)]/5 leading-none select-none italic absolute -left-12 -top-12">0{ci + 1}</span>
+                            <div className="flex flex-col relative z-10">
+                                <span className="text-[10px] font-black text-[var(--color-primary)] uppercase tracking-[0.6em] mb-4">Category.System</span>
+                                <h2 className="text-[var(--fs-3xl)] font-bold text-[var(--color-text-main)] uppercase tracking-tighter italic">{cat.name}.</h2>
                             </div>
-                            <h2 className="text-[var(--fs-2xl)] md:text-[var(--fs-3xl)] font-black text-[var(--color-text-main)] uppercase tracking-tighter italic mix-blend-screen">{cat.name}.</h2>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-[var(--space-xl)] auto-rows-fr">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                             {cat.projects.map((proj, pi) => (
-                                <motion.div
-                                    key={pi}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    className="glass-grain overflow-hidden group hover:border-[var(--color-primary)]/40 transition-all duration-700 flex flex-col rounded-[var(--space-2xl)] h-full"
-                                >
-                                    <div className="h-64 relative bg-[var(--color-bg-base)] border-b border-[var(--glass-border)] flex items-center justify-center p-[var(--space-xl)] overflow-hidden">
-                                        <div className="absolute top-0 right-0 w-80 h-80 bg-[var(--color-primary)]/10 mask-radial blur-3xl pointer-events-none" />
-                                        <div className="absolute inset-0 bg-noise opacity-[0.03] mix-blend-overlay pointer-events-none" />
-
-                                        <img
-                                            src={proj.image}
-                                            alt={proj.name}
-                                            className="h-32 w-32 object-contain relative z-10 group-hover:scale-110 group-hover:-rotate-2 transition-all duration-[0.8s] rounded-2xl shadow-2xl filter contrast-[1.1]"
-                                        />
-
-                                        <div className="absolute top-[var(--space-md)] right-[var(--space-md)] flex flex-col gap-2 items-end z-20">
-                                            {proj.isActive && (
-                                                <div className="px-3 py-1 bg-green-500/10 border border-green-500/20 rounded-full flex items-center gap-2 backdrop-blur-xl">
-                                                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_green]" />
-                                                    <span className="text-[10px] font-black text-green-500 uppercase tracking-widest">Live</span>
-                                                </div>
-                                            )}
-                                            <span className="px-3 py-1 bg-[var(--color-bg-deep)]/60 border border-[var(--glass-border)] rounded-full text-[10px] font-black text-[var(--color-text-dim)] uppercase tracking-widest backdrop-blur-md">
-                                                {proj.badge}
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div className="p-[var(--space-lg)] md:p-[var(--space-xl)] flex flex-col flex-grow bg-gradient-to-b from-transparent to-[var(--color-bg-deep)]/20">
-                                        <div className="flex justify-between items-start mb-[var(--space-lg)]">
-                                            <h3 className="text-[var(--fs-2xl)] font-black text-[var(--color-text-main)] tracking-tighter uppercase transition-colors group-hover:text-[var(--color-primary)] leading-none">
-                                                {proj.name}
-                                            </h3>
-                                            <a href={proj.twitter} target="_blank" className="p-3.5 bg-[var(--color-bg-base)] border border-[var(--glass-border)] rounded-2xl text-[var(--color-text-dim)] hover:text-[var(--color-primary)] transition-all group-hover:rotate-6 shadow-inner">
-                                                <Twitter size={18} />
-                                            </a>
-                                        </div>
-
-                                        <div className="space-y-[var(--space-xl)] flex-grow">
-                                            <p className="text-[var(--fs-sm)] md:text-[var(--fs-base)] text-[var(--color-text-muted)] font-medium leading-[1.6] mask-edge-fade">
-                                                {proj.description}
-                                            </p>
-
-                                            {/* Impact Summary with Refined Vertical Alignment */}
-                                            <div className="grid grid-cols-[auto_1fr] gap-[var(--space-md)] p-[var(--space-md)] rounded-[var(--space-xl)] bg-[var(--color-bg-deep)]/40 border border-[var(--glass-border)] group/impact relative overflow-hidden transition-all hover:bg-[var(--color-bg-deep)]/60">
-                                                <div className="p-3 bg-[var(--color-primary-soft)] rounded-xl text-[var(--color-primary)] h-fit">
-                                                    <Target size={18} />
-                                                </div>
-                                                <div className="flex flex-col gap-1.5">
-                                                    <h4 className="text-[var(--fs-xs)] font-black text-[var(--color-text-dim)] uppercase tracking-[0.25em] leading-none mb-0.5">Growth Benchmark</h4>
-                                                    <span className="text-[var(--fs-lg)] text-[var(--color-text-main)] font-black tracking-tight leading-none mb-1">{proj.metric}</span>
-                                                    <p className="text-[var(--fs-xs)] text-[var(--color-text-muted)] font-bold italic leading-relaxed opacity-90 border-l-2 border-[var(--color-primary)]/20 pl-3">
-                                                        {proj.keyImpact}
-                                                    </p>
-                                                </div>
-                                                <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-primary)]/0 via-[var(--color-primary)]/[0.03] to-[var(--color-primary)]/0 -translate-x-full group-hover/impact:translate-x-full transition-transform duration-[1.5s] ease-in-out pointer-events-none" />
-                                            </div>
-                                        </div>
-
-                                        <div className="mt-12 pt-8 border-t border-[var(--glass-border)] flex items-center justify-between">
-                                            <div className="flex items-center gap-2 text-[var(--fs-xs)] font-black text-[var(--color-text-dim)] uppercase tracking-[0.2em]">
-                                                <Zap size={14} className="text-[var(--color-primary)]" /> System Archive
-                                            </div>
-                                            <div className="flex items-center gap-2 text-[var(--color-primary)] font-black text-[var(--fs-xs)] uppercase tracking-widest group-hover:translate-x-1 transition-transform group-hover:brightness-125">
-                                                Case Study <ArrowRight size={16} />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </motion.div>
+                                <ProjectCard key={pi} project={proj} index={pi} />
                             ))}
                         </div>
                     </section>
                 ))}
             </div>
         </Layout>
+    );
+};
+
+const ProjectCard = ({ project, index }) => {
+    const cardRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: cardRef,
+        offset: ["start end", "end start"]
+    });
+
+    const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+    const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.9]);
+    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+    const blur = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], ["12px", "0px", "0px", "12px"]);
+
+    return (
+        <motion.div
+            ref={cardRef}
+            style={{ y, scale, opacity, filter: blur }}
+            className="group relative"
+        >
+            <div className="glass-luxe rounded-[48px] border border-[var(--glass-border)] overflow-hidden transition-all duration-1000 group-hover:border-[var(--color-primary)]/30">
+                <div className="p-10 pb-0 flex justify-between items-center relative z-10">
+                    <span className="text-[10px] font-black text-[var(--color-primary)]/50 uppercase tracking-[0.4em]">
+                        Node_0{index} // {project.badge}
+                    </span>
+                    <a href={project.twitter} target="_blank" className="p-4 glass-luxe rounded-full hover:bg-[var(--color-primary)] hover:text-black transition-all">
+                        <Twitter size={16} />
+                    </a>
+                </div>
+
+                <div className="h-[400px] relative flex items-center justify-center p-16 overflow-hidden">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        className="relative z-20"
+                    >
+                        <img
+                            src={project.image}
+                            alt={project.name}
+                            className="h-56 w-56 object-contain group-hover:scale-110 transition-all duration-[2s]"
+                        />
+                        <div className="absolute inset-0 bg-[var(--color-primary)]/10 blur-[60px] rounded-full pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity" />
+                    </motion.div>
+                </div>
+
+                <div className="p-16 pt-0">
+                    <h3 className="text-[var(--fs-2xl)] font-bold text-[var(--color-text-main)] mb-10 tracking-tighter uppercase italic group-hover:text-grad-gold transition-all duration-700">
+                        {project.name}
+                    </h3>
+
+                    <div className="space-y-12">
+                        <p className="text-[var(--fs-base)] text-[var(--color-text-dim)] font-medium leading-relaxed italic border-l-2 border-[var(--color-primary)]/30 pl-10 tracking-wide">
+                            {project.description}
+                        </p>
+
+                        <div className="p-10 rounded-[32px] glass-luxe border border-[var(--glass-border)] group-hover:border-[var(--color-primary)]/20 transition-all duration-1000 relative overflow-hidden">
+                            <span className="text-[10px] font-black text-[var(--color-primary)] uppercase tracking-[0.5em] mb-6 block opacity-60">Benchmark: {project.metric}</span>
+                            <p className="text-[14px] text-[var(--color-text-main)] font-bold leading-relaxed tracking-tight relative z-10">
+                                {project.keyImpact}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="mt-16 flex justify-between items-center opacity-40 group-hover:opacity-100 transition-opacity">
+                        <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.5em] text-[var(--color-text-dim)]">
+                            <Zap size={14} className="text-[var(--color-primary)]" /> System.Link
+                        </div>
+                        <div className="flex items-center gap-3 text-[var(--color-primary)] text-[10px] font-black uppercase tracking-[0.4em] group-hover:translate-x-3 transition-transform">
+                            Archive <ArrowRight size={16} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </motion.div>
     );
 };
 

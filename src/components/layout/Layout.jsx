@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { Zap, Target, Shield } from 'lucide-react';
 import Navbar from './Navbar';
@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
-    const springConfig = { damping: 25, stiffness: 150 };
+    const springConfig = { damping: 30, stiffness: 100 };
     const spotlightX = useSpring(mouseX, springConfig);
     const spotlightY = useSpring(mouseY, springConfig);
 
@@ -30,18 +30,43 @@ const Layout = ({ children }) => {
     }, [mouseX, mouseY]);
 
     return (
-        <div className="min-h-screen selection:bg-[var(--color-primary-soft)] selection:text-[var(--color-primary)]">
-            {/* Structural Layers */}
-            <div className="fixed inset-0 bg-[var(--color-bg-deep)] -z-40" />
-            <div className="fixed inset-0 mesh-gradient opacity-20 pointer-events-none -z-30" />
-            <div className="fixed inset-0 bg-noise opacity-[0.02] mix-blend-overlay pointer-events-none -z-20" />
+        <div className="min-h-screen selection:bg-[var(--color-primary-soft)] selection:text-[var(--color-primary)] font-['Space_Grotesk']">
+            {/* Cinematic Background Infrastructure */}
+            <div className="fixed inset-0 bg-[var(--color-bg-deep)] -z-40 overflow-hidden">
+                {/* Animated Radial Gradients */}
+                <motion.div
+                    className="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-[radial-gradient(circle,hsla(var(--clr-gold)/0.03)_0%,transparent_70%)]"
+                    animate={{
+                        x: [0, 50, 0],
+                        y: [0, 30, 0],
+                    }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                />
+                <motion.div
+                    className="absolute -bottom-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-[radial-gradient(circle,hsla(var(--clr-purple)/0.04)_0%,transparent_70%)]"
+                    animate={{
+                        x: [0, -40, 0],
+                        y: [0, -20, 0],
+                    }}
+                    transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                />
 
-            {/* Interactive Spotlight */}
+                {/* Floating Particles Simulation */}
+                <div className="absolute inset-0 opacity-20 pointer-events-none">
+                    <div className="absolute top-[10%] left-[20%] w-1 h-1 bg-[var(--color-primary)] rounded-full blur-[1px] animate-pulse" />
+                    <div className="absolute top-[40%] left-[80%] w-1 h-1 bg-[var(--color-accent)] rounded-full blur-[1px] animate-pulse delay-700" />
+                    <div className="absolute top-[70%] left-[30%] w-1 h-1 bg-[var(--color-primary)] rounded-full blur-[1px] animate-pulse delay-1000" />
+                </div>
+            </div>
+
+            <div className="fixed inset-0 bg-noise opacity-[0.015] mix-blend-overlay pointer-events-none -z-20" />
+
+            {/* Subtle Cursor Trail Glow (Luxe Version) */}
             {!isMobile && (
                 <motion.div
                     className="fixed inset-0 z-[-10] pointer-events-none"
                     style={{
-                        background: `radial-gradient(800px circle at ${spotlightX}px ${spotlightY}px, var(--color-primary-soft), transparent 80%)`,
+                        background: `radial-gradient(400px circle at ${spotlightX}px ${spotlightY}px, hsla(var(--clr-gold)/0.02), transparent 80%)`,
                     }}
                 />
             )}
@@ -49,10 +74,10 @@ const Layout = ({ children }) => {
             <Navbar />
 
             <motion.main
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="relative z-10 pt-[100px]"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
+                className="relative z-10 pt-[120px]"
             >
                 <div className="container-fluid">
                     {children}
@@ -63,52 +88,46 @@ const Layout = ({ children }) => {
                 <div className="container-fluid">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[var(--space-lg)] mb-[var(--space-xl)]">
                         <div className="space-y-[var(--space-sm)]">
-                            <span className="text-[var(--fs-xl)] font-black tracking-tighter uppercase italic">
+                            <span className="text-[var(--fs-xl)] font-bold tracking-tighter uppercase italic text-grad-gold">
                                 PIRATE<span className="text-[var(--color-primary)]">.</span>
                             </span>
                             <p className="text-[var(--color-text-muted)] text-[var(--fs-sm)] leading-relaxed max-w-xs font-medium">
-                                Strategically architecting Web3 communities and building scalable decentralized ecosystems since 2022.
+                                Architecting high-concurrency Web3 ecosystems for the elite decentralized era.
                             </p>
                         </div>
 
                         <div className="space-y-[var(--space-xs)]">
-                            <h4 className="text-[var(--fs-xs)] font-black text-[var(--color-text-main)] uppercase tracking-[0.2em]">Navigation</h4>
+                            <h4 className="text-[var(--fs-xs)] font-bold text-[var(--color-text-main)] uppercase tracking-[0.3em] opacity-50">Navigation</h4>
                             <div className="flex flex-col gap-[var(--space-2xs)] text-[var(--color-text-muted)] text-[var(--fs-sm)] font-medium">
-                                <a href="/" className="hover:text-[var(--color-primary)] transition-colors">Home</a>
-                                <a href="/developer" className="hover:text-[var(--color-primary)] transition-colors">Developer Work</a>
-                                <a href="/community" className="hover:text-[var(--color-primary)] transition-colors">Community Work</a>
-                                <a href="/contact" className="hover:text-[var(--color-primary)] transition-colors">Let's Connect</a>
+                                <a href="/" className="link-underline w-fit">Home</a>
+                                <a href="/developer" className="link-underline w-fit">Developer Work</a>
+                                <a href="/community" className="link-underline w-fit">Community Work</a>
+                                <a href="/contact" className="link-underline w-fit">Let's Connect</a>
                             </div>
                         </div>
 
                         <div className="space-y-[var(--space-xs)]">
-                            <h4 className="text-[var(--fs-xs)] font-black text-[var(--color-text-main)] uppercase tracking-[0.2em]">Connect</h4>
+                            <h4 className="text-[var(--fs-xs)] font-bold text-[var(--color-text-main)] uppercase tracking-[0.3em] opacity-50">Connect</h4>
                             <div className="flex flex-col gap-[var(--space-2xs)] text-[var(--color-text-muted)] text-[var(--fs-sm)] font-medium">
-                                <a href="https://x.com/pirstaef" target="_blank" className="hover:text-[var(--color-primary)] transition-colors">X (Twitter)</a>
-                                <a href="https://t.me/pirstaef" target="_blank" className="hover:text-[var(--color-primary)] transition-colors">Telegram</a>
-                                <a href="https://github.com/mohit-solidity" target="_blank" className="hover:text-[var(--color-primary)] transition-colors">GitHub</a>
-                                <a href="#" className="hover:text-[var(--color-primary)] transition-colors">Discord</a>
+                                <a href="https://x.com/pirstaef" target="_blank" className="link-underline w-fit">X (Twitter)</a>
+                                <a href="https://t.me/pirstaef" target="_blank" className="link-underline w-fit">Telegram</a>
+                                <a href="https://github.com/mohit-solidity" target="_blank" className="link-underline w-fit">GitHub</a>
                             </div>
                         </div>
 
                         <div className="space-y-[var(--space-xs)]">
-                            <h4 className="text-[var(--fs-xs)] font-black text-[var(--color-text-main)] uppercase tracking-[0.2em]">Status</h4>
-                            <div className="flex items-center gap-[var(--space-xs)] text-green-400 text-[var(--fs-sm)] font-bold italic">
-                                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_green]" />
-                                Available for Senior Roles
+                            <h4 className="text-[var(--fs-xs)] font-bold text-[var(--color-text-main)] uppercase tracking-[0.3em] opacity-50">Status</h4>
+                            <div className="flex items-center gap-[var(--space-xs)] text-[var(--color-primary)] text-[var(--fs-xs)] font-bold tracking-wider">
+                                <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] animate-pulse shadow-[0_0_10px_var(--color-primary)]" />
+                                AVAILABLE FOR SENIOR ARCHITECTURE
                             </div>
                         </div>
                     </div>
 
                     <div className="pt-[var(--space-md)] border-t border-[var(--glass-border)] flex flex-col md:flex-row justify-between items-center gap-[var(--space-md)]">
-                        <span className="text-[var(--color-text-dim)] text-[var(--fs-xs)] uppercase font-bold tracking-[0.2em]">
-                            © 2026 PIRATE — LAST LEVEL WEB3 ARCHITECTURE
+                        <span className="text-[var(--color-text-dim)] text-[10px] uppercase font-bold tracking-[0.4em]">
+                            © 2026 PIRATE — LUXURY WEB3 ARCHITECTURE
                         </span>
-                        <div className="flex gap-[var(--space-md)] text-[var(--color-text-dim)]">
-                            <Zap size={14} className="hover:text-[var(--color-primary)] transition-colors cursor-pointer" />
-                            <Target size={14} className="hover:text-[var(--color-primary)] transition-colors cursor-pointer" />
-                            <Shield size={14} className="hover:text-[var(--color-primary)] transition-colors cursor-pointer" />
-                        </div>
                     </div>
                 </div>
             </footer>

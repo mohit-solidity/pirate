@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Layout from '../components/layout/Layout';
 import Button from '../components/ui/Button';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Download, Send, ShieldCheck } from 'lucide-react';
+import { Github, Twitter, Send, ShieldCheck } from 'lucide-react';
 import { cn } from '../utils/cn';
 
 const Contact = () => {
@@ -16,7 +16,6 @@ const Contact = () => {
 
     const socials = [
         { icon: Github, link: 'https://github.com/mohit-solidity', label: 'GitHub' },
-        { icon: Linkedin, link: '#', label: 'LinkedIn' },
         { icon: Twitter, link: 'https://x.com/pirstaef', label: 'X (Twitter)' },
         { icon: Send, link: 'https://t.me/pirstaef', label: 'Telegram' },
     ];
@@ -54,10 +53,6 @@ const Contact = () => {
                                 </a>
                             ))}
                         </div>
-
-                        <Button variant="secondary" className="w-full sm:w-auto h-14 px-8">
-                            <Download size={20} /> Download Full Resume
-                        </Button>
                     </div>
 
                     <motion.div
@@ -95,7 +90,7 @@ const Contact = () => {
                                     formState === 'idle' ? "bg-cyan-500 text-black hover:bg-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.3)]" : "bg-white/10 text-gray-500 cursor-not-allowed"
                                 )}
                             >
-                                {formState === 'idle' && <><Send size={20} /> Transmit to mohit96046@gmail.com</>}
+                                {formState === 'idle' && <><Send size={20} />Send Proposal</>}
                                 {formState === 'sending' && <span className="animate-pulse">Encrypting & Sending...</span>}
                                 {formState === 'sent' && <><ShieldCheck size={20} className="text-cyan-400" /> Securely Transmitted</>}
                             </button>
