@@ -1,196 +1,111 @@
 @import "tailwindcss";
 
 /* 
-  Luxury Web3 OS: Design System
-  Theme: Deep Navy / Gold / Electric Purple
-  Aesthetic: Cinematic, Tactile, Futuristic
+  Refined Web3 Portfolio Design System
+  Aesthetic: Minimalist, Premium, High-Contrast
 */
 @layer base, components, utilities;
 
 @layer base {
   :root {
-    /* --- Core Palette: Dark Luxury --- */
-    --clr-navy-900: 228 66% 4%;
-    /* Deepest Navy */
-    --clr-navy-800: 228 45% 8%;
-    /* Base Surface */
-    --clr-navy-700: 228 35% 15%;
-    /* Elevated Surface */
-
-    --clr-gold: 45 92% 50%;
-    /* Luxury Accents */
+    /* --- Core Palette: Professional Dark --- */
+    --clr-black: 228 66% 2%;
+    --clr-dark-gray: 228 15% 10%;
+    --clr-elevated: 228 10% 15%;
+    
+    --clr-blue: 210 100% 60%;
     --clr-purple: 271 91% 65%;
-    /* Kinetic Energy */
-
     --clr-white: 0 0% 100%;
 
     /* --- Semantic Tokens --- */
-    --color-bg-deep: hsl(var(--clr-navy-900));
-    --color-bg-base: hsl(var(--clr-navy-800));
-    --color-bg-surface: hsl(var(--clr-navy-700));
+    --color-bg-deep: hsl(var(--clr-black));
+    --color-bg-base: hsl(var(--clr-dark-gray));
+    --color-bg-surface: hsl(var(--clr-elevated));
 
-    --color-primary: hsl(var(--clr-gold));
-    --color-primary-soft: hsla(var(--clr-gold) / 0.1);
+    --color-primary: hsl(var(--clr-blue));
     --color-accent: hsl(var(--clr-purple));
 
     --color-text-main: hsla(var(--clr-white) / 0.95);
-    --color-text-muted: hsla(var(--clr-white) / 0.65);
-    --color-text-dim: hsla(var(--clr-white) / 0.45);
+    --color-text-muted: hsla(var(--clr-white) / 0.6);
+    --color-text-dim: hsla(var(--clr-white) / 0.4);
 
-    /* --- Cinematic Parameters --- */
-    --perspective: 1500px;
-    --ease-cinematic: cubic-bezier(0.23, 1, 0.32, 1);
-    --glow-gold: 0 0 30px hsla(var(--clr-gold) / 0.2);
-    --glow-purple: 0 0 30px hsla(var(--clr-purple) / 0.3);
-
-    /* --- Border Magic --- */
-    --border-gradient: linear-gradient(135deg, hsla(var(--clr-gold) / 0.5), hsla(var(--clr-purple) / 0.5));
-    --border-angle: 0deg;
-
-    /* --- Fluid Typography (Space Grotesk) --- */
+    /* --- Design Tokens --- */
+    --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+    --border-subtle: hsla(var(--clr-white) / 0.1);
+    
+    /* --- Fluid Typography --- */
     --fs-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.85rem);
     --fs-sm: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
     --fs-base: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
-    --fs-lg: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
-    --fs-xl: clamp(1.5rem, 1.35rem + 0.8vw, 2.25rem);
-    --fs-2xl: clamp(2.25rem, 2rem + 1.5vw, 3.5rem);
-    --fs-3xl: clamp(3rem, 2.5rem + 3vw, 5rem);
-    --fs-hero: clamp(4rem, 3.5rem + 6vw, 12rem);
+    --fs-lg: clamp(1.125rem, 1.1rem + 0.5vw, 1.5rem);
+    --fs-xl: clamp(1.5rem, 1.4rem + 0.8vw, 2rem);
+    --fs-2xl: clamp(2rem, 1.8rem + 1.5vw, 3rem);
+    --fs-hero: clamp(3.5rem, 3rem + 5vw, 8rem);
 
-    /* --- Fluid Spacing --- */
-    --space-md: clamp(1.5rem, 1.25rem + 1vw, 2rem);
-    --space-lg: clamp(2.5rem, 2rem + 2vw, 4rem);
-    --space-xl: clamp(4rem, 3.5rem + 3vw, 6rem);
-    --space-2xl: clamp(6rem, 5rem + 5vw, 10rem);
-
-    /* --- Glassmorphism Luxe --- */
-    --glass-bg: hsla(var(--clr-white) / 0.03);
+    /* --- Glassmorphism Refined --- */
+    --glass-bg: hsla(var(--clr-white) / 0.02);
     --glass-border: hsla(var(--clr-white) / 0.08);
-    --glass-blur: 32px;
+    --glass-blur: 16px;
   }
 
   body {
     background-color: var(--color-bg-deep);
     color: var(--color-text-main);
     margin: 0;
-    font-family: 'Space Grotesk', sans-serif;
-    letter-spacing: -0.01em;
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.6;
     overflow-x: hidden;
-    perspective: var(--perspective);
     -webkit-font-smoothing: antialiased;
   }
 
-  h1,
-  h2,
-  h3,
-  h4 {
-    font-weight: 700;
-    letter-spacing: -0.04em;
+  h1, h2, h3, h4 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
   }
 }
 
 @layer components {
   .container-fluid {
-    inline-size: min(100%, 100rem);
+    inline-size: min(100%, 80rem);
     margin-inline: auto;
-    padding-inline: var(--space-md);
+    padding-inline: 2rem;
   }
 
-  /* Cinematic Button: Depth Press */
-  .btn-physical {
-    position: relative;
-    transition: all var(--ease-cinematic);
-    transform-style: preserve-3d;
-  }
-
-  .btn-physical:active {
-    transform: translateY(2px) scale(0.98);
-  }
-
-  /* Animated Gradient Border */
-  .border-gradient-animate {
-    position: relative;
-    z-index: 0;
-    overflow: hidden;
-  }
-
-  .border-gradient-animate::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    inset: -2px;
-    background: conic-gradient(from var(--border-angle),
-        transparent 20%,
-        var(--color-primary) 50%,
-        var(--color-accent) 80%,
-        transparent 100%);
-    animation: rotate-border 4s linear infinite;
-  }
-
-  @property --border-angle {
-    syntax: '<angle>';
-    initial-value: 0deg;
-    inherits: false;
-  }
-
-  @keyframes rotate-border {
-    to {
-      --border-angle: 360deg;
-    }
-  }
-
-  /* Glass Panel Luxe */
-  .glass-luxe {
+  .glass-card {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--glass-border);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border-radius: 24px;
+    transition: all 0.4s var(--ease-premium);
+  }
+
+  .glass-card:hover {
+    background: hsla(var(--clr-white) / 0.04);
+    border-color: hsla(var(--clr-white) / 0.15);
+    transform: translateY(-4px);
   }
 }
 
 @layer utilities {
-
-  /* Cinematic Gradients */
-  .bg-luxury-grad {
-    background: radial-gradient(circle at top right, hsla(var(--clr-purple) / 0.05), transparent 40%),
-      radial-gradient(circle at bottom left, hsla(var(--clr-gold) / 0.05), transparent 40%);
-  }
-
-  /* Text Maskings */
-  .text-grad-gold {
-    background: linear-gradient(135deg, hsl(var(--clr-gold)), hsla(var(--clr-gold) / 0.6));
+  .text-grad {
+    background: linear-gradient(135deg, #fff 0%, hsla(var(--clr-white) / 0.5) 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  /* Micro Interactions */
-  .hover-glow:hover {
-    box-shadow: var(--glow-purple);
-    transform: translateY(-2px);
+  .text-grad-blue {
+    background: linear-gradient(135deg, var(--color-primary) 0%, hsla(var(--clr-blue) / 0.4) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  .link-underline {
-    position: relative;
-  }
-
-  .link-underline::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 50%;
-    width: 0;
-    height: 1.5px;
-    background: var(--color-primary);
-    transition: all 0.4s var(--ease-cinematic);
-    transform: translateX(-50%);
-  }
-
-  .link-underline:hover::after {
-    width: 100%;
-  }
-
-  /* Magnetic Anchor Base */
-  .magnetic-anchor {
-    transition: transform 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+  .bg-grid {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, hsla(var(--clr-white) / 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, hsla(var(--clr-white) / 0.02) 1px, transparent 1px);
   }
 }
