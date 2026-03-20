@@ -16,7 +16,6 @@ const Developer = () => {
             tech: ['Solidity', 'React', 'Hardhat'],
             github: 'https://github.com/mohit-solidity',
             demo: 'https://subscription-dapp-two.vercel.app/',
-            image: 'https://cdn-icons-png.flaticon.com/512/2645/2645100.png'
         },
         {
             title: 'Bidding DApp',
@@ -25,7 +24,6 @@ const Developer = () => {
             tech: ['Solidity', 'Web3.js', 'Foundry'],
             github: 'https://github.com/mohit-solidity',
             demo: 'https://mohit-solidity.github.io/new-Bidding-Dapp/',
-            image: 'https://cdn-icons-png.flaticon.com/512/3133/3133314.png'
         },
         {
             title: 'Staking DApp',
@@ -34,7 +32,6 @@ const Developer = () => {
             tech: ['Solidity', 'Ethers.js', 'Tailwind', 'Node.js'],
             github: 'https://github.com/mohit-solidity',
             demo: 'https://mohit-solidity.github.io/StakingDapp',
-            image: 'https://cdn-icons-png.flaticon.com/512/2152/2152539.png'
         }
     ];
 
