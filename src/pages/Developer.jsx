@@ -14,7 +14,7 @@ const Developer = () => {
             description: 'I built a modular payment system that handles recurring on-chain transactions, prioritizing gas savings and making the process transparent for every user.',
             features: ['EIP-5827 Support', 'Gas-efficient Logic', 'NFT Memberships', 'On-chain Governance'],
             tech: ['Solidity', 'React', 'Hardhat'],
-            github: 'https://github.com/mohit-solidity',
+            github: 'https://github.com/mohit-solidity/subscription-dapp',
             demo: 'https://subscription-dapp-two.vercel.app/',
         },
         {
@@ -22,7 +22,7 @@ const Developer = () => {
             description: 'I engineered a high-performance auction platform featuring blind bidding and instant settlement, ensuring absolute fairness through verifiable randomness.',
             features: ['Blind Bids', 'VRF Randomness', 'Escrow System', 'Auto-Settlement'],
             tech: ['Solidity', 'Web3.js', 'Foundry'],
-            github: 'https://github.com/mohit-solidity',
+            github: 'https://github.com/mohit-solidity/new-Bidding-Dapp',
             demo: 'https://mohit-solidity.github.io/new-Bidding-Dapp/',
         },
         {
@@ -30,8 +30,16 @@ const Developer = () => {
             description: 'I designed a yield-focused staking protocol that offers multi-tier rewards and lockup periods, backed by a custom indexing system for real-time accuracy.',
             features: ['Dynamic APR', 'Compound Rewards', 'Stake Locks', 'Analytics API'],
             tech: ['Solidity', 'Ethers.js', 'Tailwind', 'Node.js'],
-            github: 'https://github.com/mohit-solidity',
+            github: 'https://github.com/mohit-solidity/StakingDapp',
             demo: 'https://mohit-solidity.github.io/StakingDapp',
+        },
+        {
+            title: 'Time Staking DApp',
+            description: 'Build A Time Staking DApp Where users can stake to specific time limits(1 month, 2 month etc',
+            features: ['Time Limit Staking', 'Compound Rewards', 'Stake Locks', 'Analytics API'],
+            tech: ['Solidity', 'Ethers.js', 'Tailwind', 'Node.js'],
+            github: 'https://github.com/mohit-solidity/TimeStakingDapp',
+            demo: 'https://mohit-solidity.github.io/TimeStakingDapp',
         }
     ];
 
