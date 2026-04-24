@@ -184,7 +184,7 @@ const Community = () => {
       icon: Send,
       detail: "Tactical drop",
     },
-    { label: "Protocols", value: "15+", icon: Layers, detail: "L1/L2 Grid" },
+    { label: "Projects", value: "15+", icon: Layers, detail: "L1/L2 Grid" },
   ];
 
   return (
@@ -204,8 +204,8 @@ const Community = () => {
             <span className="text-grad-blue">Growth.</span>
           </h1>
           <p className="text-[var(--fs-lg)] text-[var(--color-text-muted)] max-w-2xl mx-auto font-medium leading-relaxed">
-            I specialize in architecting strategic growth for high-velocity Web3
-            protocols, bridging the gap between technical governance and the
+            I specialize in architecting strategic growth for Web3
+            projects, bridging the gap between technical governance and the
             people who use them.
           </p>
         </motion.div>
