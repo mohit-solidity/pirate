@@ -84,8 +84,9 @@ const Home = () => {
                             transition={{ duration: 0.8, delay: 0.4 }}
                             className="flex flex-wrap items-center gap-6 pt-10"
                         >
-                            <Button onClick={() => navigate('/developer')} className="h-16 px-12 text-[12px] uppercase font-bold tracking-widest" variant="secondary">
-                                View Dev Work
+                            <Button   onClick={() => navigate('/developer')} 
+  className="h-16 px-12 text-[12px] uppercase font-bold tracking-widest shadow-2xl shadow-yellow-300/30 border-2 border-yellow-300 bg-yellow-200 text-black hover:scale-105" 
+  variant="secondary">View Dev Work
                             </Button>
                             <Magnetic strength={0.1}>
                                 <Button onClick={() => navigate('/community')} className="h-16 px-12 text-[12px] uppercase font-bold tracking-widest shadow-2lx shadow-[var(--color-primary)]/20 border-2 border-[var(--color-primary)] bg-[var(--color-primary)] text-black hover:scale-105" variant="primary">
