@@ -6,6 +6,7 @@ import Magnetic from '../components/ui/Magnetic';
 import { motion } from 'framer-motion';
 import { Layers, Database, Shield, Github, Cpu } from 'lucide-react';
 import Button from '../components/ui/Button';
+import { title } from 'framer-motion/client';
 
 const Developer = () => {
     const projects = [
@@ -40,6 +41,14 @@ const Developer = () => {
             tech: ['Solidity', 'Ethers.js', 'Tailwind', 'Node.js'],
             github: 'https://github.com/mohit-solidity/TimeStakingDapp',
             demo: 'https://mohit-solidity.github.io/TimeStakingDapp',
+        },
+        {
+            title: 'Foundry Testing',
+            description: 'Deployes Foundry Testing',
+            features:['Foundry Testing', 'Forge Testing'],
+            tech: ['Solidity','Forge init','forge test'],
+            github: 'https://github.com/mohit-solidity/Foundry-Testing',
+            demo: '',
         }
     ];
 
