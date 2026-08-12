@@ -110,6 +110,36 @@ const Community = () => {
       ],
     },
     {
+      id: "Private Infrastructure",
+      name : "Private Networks Infrastructure",
+      projects: [
+              {
+        name: "Orbinum",
+        badge: "Privacy & ZK",
+        description:
+        "Managed community engagement for Orbinum, a privacy-focused blockchain using zero-knowledge technology and EVM compatibility, supporting members and ecosystem participants through moderation, onboarding, updates, and day-to-day community support.",
+        metric: "Community Growth",
+        keyImpact:"Helped build an active community by answering questions, moderating discussions, sharing project updates, supporting AMAs, and keeping members informed and engaged across community channels.",
+        image:"https://pbs.twimg.com/profile_images/2014061375136370689/tHsDfKIp_400x400.jpg",
+        twitter:
+        "https://x.com/orbinumnetwork",
+      },
+       {
+        name: "Aleo",
+        badge: "Privacy & ZK",
+        description:
+        "Managed community engagement for Aleo, supporting members, developers, and ecosystem contributors through active moderation, onboarding, updates, and day-to-day community support.",
+        metric: "Community Growth",
+        keyImpact:
+        "Helped maintain an active and welcoming community by answering questions, moderating discussions, sharing updates, supporting AMAs, and keeping members engaged across community channels.",
+        image:
+        "https://pbs.twimg.com/profile_images/2051744303098052608/cOHxtsLO_400x400.jpg",
+        twitter:
+        "https://x.com/AleoHQ",
+      },
+      ]
+    },
+    {
       id: "infra",
       name: "Infrastructure & DeFi",
       projects: [
@@ -250,16 +280,10 @@ const Community = () => {
                 ))}
                 <div class="flex items-center gap-4 mt-8">
                   <div class="flex-1 h-px bg-gray-700"></div>
-                  <p class="text-xs text-gray-400 tracking-widest uppercase">
-                    And many more
-                  </p>
                   <div class="flex-1 h-px bg-gray-700"></div>
                 </div>
                 <div class="flex items-center gap-4 mt-8">
                   <div class="flex-1 h-px bg-gray-700"></div>
-                  <p class="text-xs text-gray-400 tracking-widest uppercase">
-                    And many more
-                  </p>
                   <div class="flex-1 h-px bg-gray-700"></div>
                 </div>
               </div>

@@ -44,7 +44,7 @@ const Developer = () => {
         },
         {
             title: 'Foundry Testing',
-            description: 'Deployes Foundry Testing',
+            description: 'Deployed Foundry Testing, Run Using Forge test',
             features:['Foundry Testing', 'Forge Testing'],
             tech: ['Solidity','Forge init','forge test'],
             github: 'https://github.com/mohit-solidity/Foundry-Testing',
